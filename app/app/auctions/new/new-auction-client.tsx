@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect, FormEvent } from "react";
 import { useRouter } from "next/navigation";
@@ -129,6 +129,11 @@ export function NewAuctionClient() {
       try {
         const res = await fetch("/api/auth/session");
         if (!res.ok) {
+          setIsAuthenticated(false);
+          return;
+        }
+        const data = await res.json();
+        if (!data?.user) {
           setIsAuthenticated(false);
         }
       } catch {
