@@ -4,7 +4,6 @@ const isProduction = process.env.NODE_ENV === "production";
 const csp = `default-src 'self'; script-src 'self' 'unsafe-inline'${isProduction ? "" : " 'unsafe-eval'"}; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://*.mm.bing.net https://images.unsplash.com https://via.placeholder.com https://placehold.co; font-src 'self' data:; connect-src 'self'${isProduction ? " https: wss:" : " ws: http://localhost:*"}; frame-ancestors 'none'; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests;`.replace(/\s+/g, " ").trim();
 
 const nextConfig: NextConfig = {
-  output: "standalone",
   poweredByHeader: false,
   async headers() {
     return [
